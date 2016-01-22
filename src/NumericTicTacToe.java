@@ -139,6 +139,12 @@ public class NumericTicTacToe {
 	
 	public void cpuMove()
 	{
+		boolean winningMoveFound = false;
+		boolean winningMoveFoundInCol = false;
+		boolean winningMoveFoundInRow = false;
+		boolean winningMoveFoundInDiagonal1 = false;
+		boolean winningMoveFoundInDiagonal2 = false;
+		int winningNum = 0;
 		Random numberGen = new Random();
 		try {
 			Thread.sleep(400);
@@ -184,10 +190,205 @@ public class NumericTicTacToe {
 			board[col][row] = chosenNumber;
 			StdDraw.text(x, y, number);
 		}
+		
+		
 		//CHECKS HERE TO TRY GET WINNING MOVE
-		
-		
 		else
+		{
+			//checks columns for winning move
+			for(int i = 0; i < 3; i++)
+			{
+				if(board[i][0] == 0 || board[i][1] == 0 || board[i][2] == 0)
+				{
+					if(board[i][0] + board[i][1] != 0 && board[i][0] + board[i][2] != 0 && board[i][2] + board[i][1] != 0)
+					{
+						int targetNum = (board[i][0] + board[i][1] + board[i][2]);
+						for(int j = 0; j < 5; j++)
+						{
+							if(cpuNums[j] != 0)
+							{
+								if(15 - targetNum == cpuNums[j])
+								{
+									winningMoveFound = true;
+									winningMoveFoundInCol = true;
+									winningNum = cpuNums[j];
+									col = i;
+									break;
+								}
+							}
+						}
+					}
+				}
+				if(winningMoveFound)
+				{
+					break;
+				}
+			}
+			//checks row for winning move
+			if(!winningMoveFound)
+			{
+				for(int i = 0; i < 3; i++)
+				{
+					if(board[0][i] == 0 || board[1][i] == 0 || board[2][i] == 0)
+					{
+						if(board[0][i] + board[1][i] != 0 && board[0][i] + board[2][i] != 0 && board[1][i] + board[2][i] != 0)
+						{
+							int targetNum = (board[0][i] + board[1][i] + board[2][i]);
+							for(int j = 0; j < 5; j++)
+							{
+								if(cpuNums[j] != 0)
+								{
+									if(15 - targetNum == cpuNums[j])
+									{
+										winningMoveFound = true;
+										winningMoveFoundInRow = true;
+										winningNum = cpuNums[j];
+										row = i;
+										break;
+									}
+								}
+							}
+						}
+					}
+					if(winningMoveFound)
+					{
+						break;
+					}
+				}
+			}
+			//checks diagonal 1 for winning move
+			if(!winningMoveFound)
+			{
+				if(board[0][0] == 0 || board[1][1] == 0 || board[2][2] == 0)
+				{
+					if(board[0][0] + board[1][1] != 0 && board[0][0] + board[2][2] != 0 && board[1][1] + board[2][2] != 0)
+					{
+						int targetNum = (board[0][0] + board[1][1] + board[2][2]);
+						for(int j = 0; j < 5; j++)
+						{
+							if(cpuNums[j] != 0)
+							{
+								if(15 - targetNum == cpuNums[j])
+								{
+									winningMoveFound = true;
+									winningMoveFoundInDiagonal1 = true;
+									winningNum = cpuNums[j];
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+			//checks diagonal 2 for winning move
+			if(!winningMoveFound)
+			{
+				if(board[2][0] == 0 || board[1][1] == 0 || board[0][2] == 0)
+				{
+					if(board[2][0] + board[1][1] != 0 && board[2][0] + board[0][2] != 0 && board[1][1] + board[0][2] != 0)
+					{
+						int targetNum = (board[2][0] + board[1][1] + board[0][2]);
+						for(int j = 0; j < 3; j++)
+						{
+							if(cpuNums[j] != 0)
+							{
+								if(15 - targetNum == cpuNums[j])
+								{
+									winningMoveFound = true;
+									winningMoveFoundInDiagonal2 = true;
+									winningNum = cpuNums[j];
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if(winningMoveFound)
+		{
+			String number = "" + winningNum + "";
+			if(winningMoveFoundInCol)
+			{
+				if(board[col][0] == 0)
+				{
+					double x = col * .33 + .15;
+					StdDraw.text(x, .375, number);
+					board[col][0] = winningNum;
+				}
+				if(board[col][1] == 0)
+				{
+					double x = col * .33 + .15;
+					StdDraw.text(x, .625, number);
+					board[col][1] = winningNum;
+				}
+				if(board[col][2] == 0)
+				{
+					double x = col * .33 + .15;
+					StdDraw.text(x, .875, number);
+					board[col][2] = winningNum;
+				}
+			}
+			if(winningMoveFoundInRow)
+			{
+				if(board[0][row] == 0)
+				{
+					double y = row * .25  +.375;
+					StdDraw.text(.15, y, number);
+					board[0][row] = winningNum;
+				}
+				if(board[1][row] == 0)
+				{
+					double y = row * .25  +.375;
+					StdDraw.text(.48, y, number);
+					board[1][row] = winningNum;
+				}
+				if(board[2][row] == 0)
+				{
+					double y = row * .25  +.375;
+					StdDraw.text(.81, y, number);
+					board[2][row] = winningNum;
+				}
+			}
+			if(winningMoveFoundInDiagonal1)
+			{
+				if(board[0][0] == 0)
+				{
+					StdDraw.text(.15, .375, number);
+					board[0][0] = winningNum;
+				}
+				if(board[1][1] == 0)
+				{
+					StdDraw.text(.48, .625, number);
+					board[1][1] = winningNum;
+				}
+				if(board[2][2] == 0)
+				{
+					StdDraw.text(.81, .875, number);
+					board[2][2] = winningNum;
+				}
+			}
+			if(winningMoveFoundInDiagonal2)
+			{
+				if(board[0][2] == 0)
+				{
+					StdDraw.text(.15, .875, number);
+					board[0][2] = winningNum;
+				}
+				if(board[1][1] == 0)
+				{
+					StdDraw.text(.48, .625, number);
+					board[1][1] = winningNum;
+				}
+				if(board[2][0] == 0)
+				{
+					StdDraw.text(.81, .375, number);
+					board[2][0] = winningNum;
+				}
+			}
+		}
+		else if(!winningMoveFound && move !=0)
 		{
 			double x = 124;
 			double y = 256;
@@ -375,3 +576,5 @@ public class NumericTicTacToe {
 	}
 	
 }
+
+//current problem: need to check for whether or not spaces have been used already and not just if they are 0 in the win check part of the cpuMove()
