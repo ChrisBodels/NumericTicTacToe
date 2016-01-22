@@ -417,30 +417,8 @@ public class NumericTicTacToe {
 					validSpaceFound = true;
 				}
 			}
-			if(col == 0)
-			{
-				x = .165;
-			}
-			else if(col == 1)
-			{
-				x = .495;
-			}
-			else if(col == 2)
-			{
-				x = .825;
-			}
-			if(row == 0)
-			{
-				y = .375;
-			}
-			else if(row == 1)
-			{
-				y = .625;
-			}
-			else if(row == 2)
-			{
-				y = .875;
-			}
+			x = col * .33 + .15;
+			y = row * .25 + .375;
 			StdDraw.text(x, y, number);
 		}
 	}
@@ -536,19 +514,7 @@ public class NumericTicTacToe {
 
        board[col][row] = selectedNum;   // valid move (empty slot)
        double x = col * .33 + 0.15;
-       double y = .5;
-       if(row == 0)
-       {
-    	   y = .375;
-       }
-       else if(row == 1)
-       {
-    	   y = .625;
-       }
-       else
-       {
-    	   y = .875;
-       }
+       double y = row * .25 + .375;
        StdDraw.text(numX, .1, "X");
        String number = "" + selectedNum +"";
        //double y = row * .53 + 0.15;
@@ -576,5 +542,3 @@ public class NumericTicTacToe {
 	}
 	
 }
-
-//current problem: need to check for whether or not spaces have been used already and not just if they are 0 in the win check part of the cpuMove()
