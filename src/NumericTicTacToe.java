@@ -98,6 +98,26 @@ public class NumericTicTacToe {
 				if(move % 2 == 0)
 				{
 					cpuMove();
+					for(int i = 0; i < 3; i++)
+				       {
+				    	   if(board[i][0] + board[i][1] + board[i][2] == 15 && board[i][0] != 0 && board[i][1] !=0 && board [i][2] != 0)
+				    	   {
+				    		   cpuWin = true;
+				    	   }
+				    	   if(board[0][i] + board[1][i] + board[2][i] == 15 && board[0][i] != 0 && board[1][i] !=0 && board [2][i] != 0)
+				    	   {
+				    		   cpuWin = true;
+				    	   }
+				       }
+				       if((board[0][0] + board[1][1] + board[2][2]) == 15 && board[0][0] != 0 && board[1][1] !=0 && board [2][2] != 0)
+				       {
+				       		cpuWin = true;
+				       }
+				       if((board[0][2] + board [1][1] + board[2][0]) == 15 && board[2][0] != 0 && board[1][1] !=0 && board [0][2] != 0)
+				       {
+				       		cpuWin = true;
+				       }
+					
 				}
 				else
 				{
@@ -228,7 +248,7 @@ public class NumericTicTacToe {
 	{
 		boolean mousePressed = false;
 		boolean numAvailable = false;
-		int numCol = 1243, numRow = 1243, selectedNum = 1234;
+		int numCol = 1243, selectedNum = 1234;
 		
 		System.out.println("\nPlease select an available number from the selection.");
 		do{
@@ -332,6 +352,26 @@ public class NumericTicTacToe {
        String number = "" + selectedNum +"";
        //double y = row * .53 + 0.15;
        StdDraw.text(x, y,  number);
+       
+       for(int i = 0; i < 3; i++)
+       {
+    	   if(board[i][0] + board[i][1] + board[i][2] == 15 && board[i][0] != 0 && board[i][1] !=0 && board [i][2] != 0)
+    	   {
+    		   playerWin = true;
+    	   }
+    	   if(board[0][i] + board[1][i] + board[2][i] == 15 && board[0][i] != 0 && board[1][i] !=0 && board [2][i] != 0)
+    	   {
+    		   playerWin = true;
+    	   }
+       }
+       if((board[0][0] + board[1][1] + board[2][2]) == 15 && board[0][0] != 0 && board[1][1] !=0 && board [2][2] != 0)
+       {
+       		playerWin = true;
+       }
+       if((board[0][2] + board [1][1] + board[2][0]) == 15 && board[2][0] != 0 && board[1][1] !=0 && board [0][2] != 0)
+       {
+       		playerWin = true;
+       }
 	}
 	
 }
