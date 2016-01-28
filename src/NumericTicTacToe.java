@@ -4,6 +4,17 @@ import java.util.Random;
 import edu.princeton.cs.introcs.StdDraw;
 
 
+/**
+ * My game of numeric Tic Tac Toe
+ * Aim of the game is to get any row column or diagonal to add up to 15 on your turn,
+ * computer gets all odd numbers between 1 and 9 and goes first, player gets all even numbers between 1 and 9.
+ * 
+ * 
+ * @author Chris Bodels
+ * 
+ * Last updated: 28 January 2016
+ *
+ */
 public class NumericTicTacToe {
 	
 	private int move = 0;
@@ -75,7 +86,6 @@ public class NumericTicTacToe {
 		StdDraw.text(.875, .1, "8");
 				
 		StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 64)); // Font SIZE!
-		//StdDraw.text(.625, .1, "X"); //test
 				
 		game();
 	}
@@ -150,7 +160,6 @@ public class NumericTicTacToe {
 		boolean playerWinningMoveFoundInDiagonal1 = false;
 		boolean playerWinningMoveFoundInDiagonal2 = false;
 		int winningNum = 0;
-		int playerWinningNum = 0;
 		Random numberGen = new Random();
 		try {
 			Thread.sleep(400);
@@ -159,19 +168,6 @@ public class NumericTicTacToe {
 		}
 		
 		int col = 0, row = 0;
-		/*if(move == 0)
-		{
-			col = numberGen.nextInt(3);
-			row = numberGen.nextInt(3);
-			int randNum = numberGen.nextInt(5);
-			int chosenNumber = cpuNums[randNum];
-			String number = "" + chosenNumber + "";
-			cpuNums[randNum] = 0;
-			double x = col * .33 + .15;
-			double y = row * .25 + .375;
-			board[col][row] = chosenNumber;
-			StdDraw.text(x, y, number);
-		}*/
 		
 		
 		//CHECKS HERE TO TRY GET WINNING MOVE
@@ -389,7 +385,6 @@ public class NumericTicTacToe {
 								{
 									playerWinningMoveFound = true;
 									playerWinningMoveFoundInCol = true;
-									playerWinningNum = playerNums[j];//probably don't need this
 									col = i;
 									break;
 								}
@@ -421,7 +416,6 @@ public class NumericTicTacToe {
 									{
 										playerWinningMoveFound = true;
 										playerWinningMoveFoundInRow = true;
-										playerWinningNum = playerNums[j];//probably don't need this
 										row = i;
 										break;
 									}
@@ -451,7 +445,6 @@ public class NumericTicTacToe {
 								{
 									playerWinningMoveFound = true;
 									playerWinningMoveFoundInDiagonal1 = true;
-									playerWinningNum = playerNums[j]; //probably don't need this
 									break;
 								}
 							}
@@ -476,7 +469,6 @@ public class NumericTicTacToe {
 								{
 									playerWinningMoveFound = true;
 									playerWinningMoveFoundInDiagonal2 = true;
-									playerWinningNum = playerNums[j]; //probably don't need this
 									break;
 								}
 							}
@@ -593,7 +585,7 @@ public class NumericTicTacToe {
 		}
 	}
 	
-	public void playerMove() //NEED TO CHANGE ALL THIS TO ACCOMODATE NEW BOARD
+	public void playerMove()
 	{
 		boolean mousePressed = false;
 		boolean numAvailable = false;
@@ -604,7 +596,6 @@ public class NumericTicTacToe {
 			
 			if(StdDraw.mousePressed() && StdDraw.mouseY() < .21)
 			{
-				//numCol = (int) (StdDraw.mouseX() * 2.5);
 				if(StdDraw.mouseX() > 0 && StdDraw.mouseX() < .25)
 				{
 					numCol = 0;
@@ -660,7 +651,7 @@ public class NumericTicTacToe {
 
            if (StdDraw.mousePressed() && StdDraw.mouseY() > .24) {
 
-               col = (int) (StdDraw.mouseX() * 3);	//FINE
+               col = (int) (StdDraw.mouseX() * 3);
 
                if(StdDraw.mouseY() > .24 && StdDraw.mouseY() < .5)
                {
@@ -674,7 +665,6 @@ public class NumericTicTacToe {
                {
             	   row = 2;
                }
-               //row = (int) (StdDraw.mouseY() * 3);
 
                mousePressed = true;
 
@@ -687,7 +677,6 @@ public class NumericTicTacToe {
        double y = row * .25 + .375;
        StdDraw.text(numX, .1, "X");
        String number = "" + selectedNum +"";
-       //double y = row * .53 + 0.15;
        StdDraw.text(x, y,  number);
        
        for(int i = 0; i < 3; i++)
