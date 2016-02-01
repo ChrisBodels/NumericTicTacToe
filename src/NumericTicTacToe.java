@@ -5,7 +5,7 @@ import edu.princeton.cs.introcs.StdDraw;
 
 
 /**
- * My game of numeric Tic Tac Toe
+ * My game of numeric Tic Tac Toe.
  * Aim of the game is to get any row column or diagonal to add up to 15 on your turn,
  * computer gets all odd numbers between 1 and 9 and goes first, player gets all even numbers between 1 and 9.
  * 
@@ -137,12 +137,10 @@ public class NumericTicTacToe {
 		}
 		if(cpuWin)
 		{
-			//Could change this to print on top of game board rather than in console
 			System.out.println("The computer won!\n\nBetter luck next time.");
 		}
 		if(move == 9 && !cpuWin && !playerWin)
 		{
-			//Could change this to print on top of game board rather than in console
 			System.out.println("It's a draw!\n\nMaybe next time you'll win...");
 		}
 	}
@@ -282,132 +280,101 @@ public class NumericTicTacToe {
 					}
 				}
 			}
-		}
 		
-		if(winningMoveFound)
-		{
-			String number = "" + winningNum + "";
-			if(winningMoveFoundInCol)
-			{
-				if(board[col][0] == 0)
-				{
-					double x = col * .33 + .15;
-					StdDraw.text(x, .375, number);
-					board[col][0] = winningNum;
-				}
-				if(board[col][1] == 0)
-				{
-					double x = col * .33 + .15;
-					StdDraw.text(x, .625, number);
-					board[col][1] = winningNum;
-				}
-				if(board[col][2] == 0)
-				{
-					double x = col * .33 + .15;
-					StdDraw.text(x, .875, number);
-					board[col][2] = winningNum;
-				}
-			}
-			if(winningMoveFoundInRow)
-			{
-				if(board[0][row] == 0)
-				{
-					double y = row * .25  +.375;
-					StdDraw.text(.15, y, number);
-					board[0][row] = winningNum;
-				}
-				if(board[1][row] == 0)
-				{
-					double y = row * .25  +.375;
-					StdDraw.text(.48, y, number);
-					board[1][row] = winningNum;
-				}
-				if(board[2][row] == 0)
-				{
-					double y = row * .25  +.375;
-					StdDraw.text(.81, y, number);
-					board[2][row] = winningNum;
-				}
-			}
-			if(winningMoveFoundInDiagonal1)
-			{
-				if(board[0][0] == 0)
-				{
-					StdDraw.text(.15, .375, number);
-					board[0][0] = winningNum;
-				}
-				if(board[1][1] == 0)
-				{
-					StdDraw.text(.48, .625, number);
-					board[1][1] = winningNum;
-				}
-				if(board[2][2] == 0)
-				{
-					StdDraw.text(.81, .875, number);
-					board[2][2] = winningNum;
-				}
-			}
-			if(winningMoveFoundInDiagonal2)
-			{
-				if(board[0][2] == 0)
-				{
-					StdDraw.text(.15, .875, number);
-					board[0][2] = winningNum;
-				}
-				if(board[1][1] == 0)
-				{
-					StdDraw.text(.48, .625, number);
-					board[1][1] = winningNum;
-				}
-				if(board[2][0] == 0)
-				{
-					StdDraw.text(.81, .375, number);
-					board[2][0] = winningNum;
-				}
-			}
-		}
 		
-		if(!winningMoveFound && move != 0)
-		{
-			//checks columns for winning move for player if no winning move for computer can be found
-			for(int i = 0; i < 3; i++)
+			if(winningMoveFound)
 			{
-				if(board[i][0] == 0 || board[i][1] == 0 || board[i][2] == 0)
+				String number = "" + winningNum + "";
+				if(winningMoveFoundInCol)
 				{
-					if(board[i][0] + board[i][1] != 0 && board[i][0] + board[i][2] != 0 && board[i][2] + board[i][1] != 0)
+					if(board[col][0] == 0)
 					{
-						int targetNum = (board[i][0] + board[i][1] + board[i][2]);
-						for(int j = 0; j < 4; j++)
-						{
-							if(playerNums[j] != 0)
-							{
-								if(15 - targetNum == playerNums[j])
-								{
-									playerWinningMoveFound = true;
-									playerWinningMoveFoundInCol = true;
-									col = i;
-									break;
-								}
-							}
-						}
+						double x = col * .33 + .15;
+						StdDraw.text(x, .375, number);
+						board[col][0] = winningNum;
+					}
+					if(board[col][1] == 0)
+					{
+						double x = col * .33 + .15;
+						StdDraw.text(x, .625, number);
+						board[col][1] = winningNum;
+					}
+					if(board[col][2] == 0)
+					{
+						double x = col * .33 + .15;
+						StdDraw.text(x, .875, number);
+						board[col][2] = winningNum;
 					}
 				}
-				if(playerWinningMoveFound)
+				if(winningMoveFoundInRow)
 				{
-					break;
+					if(board[0][row] == 0)
+					{
+						double y = row * .25  +.375;
+						StdDraw.text(.15, y, number);
+						board[0][row] = winningNum;
+					}
+					if(board[1][row] == 0)
+					{
+						double y = row * .25  +.375;
+						StdDraw.text(.48, y, number);
+						board[1][row] = winningNum;
+					}
+					if(board[2][row] == 0)
+					{
+						double y = row * .25  +.375;
+						StdDraw.text(.81, y, number);
+						board[2][row] = winningNum;
+					}
+				}
+				if(winningMoveFoundInDiagonal1)
+				{
+					if(board[0][0] == 0)
+					{
+						StdDraw.text(.15, .375, number);
+						board[0][0] = winningNum;
+					}
+					if(board[1][1] == 0)
+					{
+						StdDraw.text(.48, .625, number);
+						board[1][1] = winningNum;
+					}
+					if(board[2][2] == 0)
+					{
+						StdDraw.text(.81, .875, number);
+						board[2][2] = winningNum;
+					}
+				}
+				if(winningMoveFoundInDiagonal2)
+				{
+					if(board[0][2] == 0)
+					{
+						StdDraw.text(.15, .875, number);
+						board[0][2] = winningNum;
+					}
+					if(board[1][1] == 0)
+					{
+						StdDraw.text(.48, .625, number);
+						board[1][1] = winningNum;
+					}
+					if(board[2][0] == 0)
+					{
+						StdDraw.text(.81, .375, number);
+						board[2][0] = winningNum;
+					}
 				}
 			}
-			
-			if(!playerWinningMoveFound)
+		
+			if(!winningMoveFound && move != 0)
 			{
 				//checks columns for winning move for player if no winning move for computer can be found
 				for(int i = 0; i < 3; i++)
 				{
-					if(board[0][i] == 0 || board[1][i] == 0 || board[2][i] == 0)
+					if(board[i][0] == 0 || board[i][1] == 0 || board[i][2] == 0)
 					{
-						if(board[0][i] + board[1][i] != 0 && board[0][i] + board[2][i] != 0 && board[2][i] + board[1][i] != 0)
+						if(board[i][0] + board[i][1] != 0 && board[i][0] + board[i][2] != 0 && board[i][2] + board[i][1] != 0)
 						{
-							int targetNum = (board[0][i] + board[1][i] + board[2][i]);
+							int targetNum = (board[i][0] + board[i][1] + board[i][2]);
 							for(int j = 0; j < 4; j++)
 							{
 								if(playerNums[j] != 0)
@@ -415,8 +382,8 @@ public class NumericTicTacToe {
 									if(15 - targetNum == playerNums[j])
 									{
 										playerWinningMoveFound = true;
-										playerWinningMoveFoundInRow = true;
-										row = i;
+										playerWinningMoveFoundInCol = true;
+										col = i;
 										break;
 									}
 								}
@@ -428,141 +395,173 @@ public class NumericTicTacToe {
 						break;
 					}
 				}
-			}
-			if(!playerWinningMoveFound)
-			{
-				//checks diagonal1 for winning move for player if no winning move for computer can be found
-				if(board[0][0] == 0 || board[1][1] == 0 || board[2][2] == 0)
+			
+				if(!playerWinningMoveFound)
 				{
-					if(board[0][0] + board[1][1] != 0 && board[0][0] + board[2][2] != 0 && board[1][1] + board[2][2] != 0)
+					//checks columns for winning move for player if no winning move for computer can be found
+					for(int i = 0; i < 3; i++)
 					{
-						int targetNum = (board[0][0] + board[1][1] + board[2][2]);
-						for(int j = 0; j < 4; j++)
+						if(board[0][i] == 0 || board[1][i] == 0 || board[2][i] == 0)
 						{
-							if(playerNums[j] != 0)
+							if(board[0][i] + board[1][i] != 0 && board[0][i] + board[2][i] != 0 && board[2][i] + board[1][i] != 0)
 							{
-								if(15 - targetNum == playerNums[j])
+								int targetNum = (board[0][i] + board[1][i] + board[2][i]);
+								for(int j = 0; j < 4; j++)
 								{
-									playerWinningMoveFound = true;
-									playerWinningMoveFoundInDiagonal1 = true;
-									break;
+									if(playerNums[j] != 0)
+									{
+										if(15 - targetNum == playerNums[j])
+										{
+											playerWinningMoveFound = true;
+											playerWinningMoveFoundInRow = true;
+											row = i;
+											break;
+										}
+									}
+								}
+							}
+						}
+						if(playerWinningMoveFound)
+						{
+							break;
+						}
+					}	
+				}
+				if(!playerWinningMoveFound)
+				{
+					//checks diagonal1 for winning move for player if no winning move for computer can be found
+					if(board[0][0] == 0 || board[1][1] == 0 || board[2][2] == 0)
+					{
+						if(board[0][0] + board[1][1] != 0 && board[0][0] + board[2][2] != 0 && board[1][1] + board[2][2] != 0)
+						{
+							int targetNum = (board[0][0] + board[1][1] + board[2][2]);
+							for(int j = 0; j < 4; j++)
+							{
+								if(playerNums[j] != 0)
+								{
+									if(15 - targetNum == playerNums[j])
+									{
+										playerWinningMoveFound = true;
+										playerWinningMoveFoundInDiagonal1 = true;
+										break;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 			
-			if(!playerWinningMoveFound)
-			{
-				//checks diagonal2 for winning move for player if no winning move for computer can be found
-				if(board[2][0] == 0 || board[1][1] == 0 || board[0][2] == 0)
+				if(!playerWinningMoveFound)
 				{
-					if(board[2][0] + board[1][1] != 0 && board[2][0] + board[0][2] != 0 && board[1][1] + board[0][2] != 0)
+					//checks diagonal2 for winning move for player if no winning move for computer can be found
+					if(board[2][0] == 0 || board[1][1] == 0 || board[0][2] == 0)
 					{
-						int targetNum = (board[2][0] + board[1][1] + board[0][2]);
-						for(int j = 0; j < 4; j++)
+						if(board[2][0] + board[1][1] != 0 && board[2][0] + board[0][2] != 0 && board[1][1] + board[0][2] != 0)
 						{
-							if(playerNums[j] != 0)
+							int targetNum = (board[2][0] + board[1][1] + board[0][2]);
+							for(int j = 0; j < 4; j++)
 							{
-								if(15 - targetNum == playerNums[j])
+								if(playerNums[j] != 0)
 								{
-									playerWinningMoveFound = true;
-									playerWinningMoveFoundInDiagonal2 = true;
-									break;
+									if(15 - targetNum == playerNums[j])
+									{
+										playerWinningMoveFound = true;
+										playerWinningMoveFoundInDiagonal2 = true;
+										break;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 			
-			if(playerWinningMoveFound)
-			{
-				int chosenNumber = randomCPUNumSelector();
-				String number = "" + chosenNumber + "";
-				if(playerWinningMoveFoundInCol)
+				if(playerWinningMoveFound)
 				{
-					if(board[col][0] == 0)
+					int chosenNumber = randomCPUNumSelector();
+					String number = "" + chosenNumber + "";
+					if(playerWinningMoveFoundInCol)
 					{
-						double x = col * .33 + .15;
-						StdDraw.text(x, .375, number);
-						board[col][0] = chosenNumber;
+						//makeMove(col, 0);
+						if(board[col][0] == 0)
+						{
+							double x = col * .33 + .15;
+							StdDraw.text(x, .375, number);
+							board[col][0] = chosenNumber;
+						}
+						if(board[col][1] == 0)
+						{
+							double x = col * .33 + .15;
+							StdDraw.text(x, .625, number);
+							board[col][1] = chosenNumber;
+						}
+						if(board[col][2] == 0)
+						{
+							double x = col * .33 + .15;
+							StdDraw.text(x, .875, number);
+							board[col][2] = chosenNumber;
+						}
 					}
-					if(board[col][1] == 0)
+					if(playerWinningMoveFoundInRow)
 					{
-						double x = col * .33 + .15;
-						StdDraw.text(x, .625, number);
-						board[col][1] = chosenNumber;
+						if(board[0][row] == 0)
+						{
+							double y = row * .25  +.375;
+							StdDraw.text(.15, y, number);
+							board[0][row] = chosenNumber;
+						}
+						if(board[1][row] == 0)
+						{
+							double y = row * .25  +.375;
+							StdDraw.text(.48, y, number);
+							board[1][row] = chosenNumber;
+						}
+						if(board[2][row] == 0)
+						{
+							double y = row * .25  +.375;
+							StdDraw.text(.81, y, number);
+							board[2][row] = chosenNumber;
+						}
 					}
-					if(board[col][2] == 0)
+					if(playerWinningMoveFoundInDiagonal1)
 					{
-						double x = col * .33 + .15;
-						StdDraw.text(x, .875, number);
-						board[col][2] = chosenNumber;
+						if(board[0][0] == 0)
+						{
+							StdDraw.text(.15, .375, number);
+							board[0][0] = chosenNumber;
+						}
+						if(board[1][1] == 0)
+						{
+							StdDraw.text(.48, .625, number);
+							board[1][1] = chosenNumber;
+						}
+						if(board[2][2] == 0)
+						{
+							StdDraw.text(.81, .875, number);
+							board[2][2] = chosenNumber;
+						}
 					}
-				}
-				if(playerWinningMoveFoundInRow)
-				{
-					if(board[0][row] == 0)
+					if(playerWinningMoveFoundInDiagonal2)
 					{
-						double y = row * .25  +.375;
-						StdDraw.text(.15, y, number);
-						board[0][row] = chosenNumber;
-					}
-					if(board[1][row] == 0)
-					{
-						double y = row * .25  +.375;
-						StdDraw.text(.48, y, number);
-						board[1][row] = chosenNumber;
-					}
-					if(board[2][row] == 0)
-					{
-						double y = row * .25  +.375;
-						StdDraw.text(.81, y, number);
-						board[2][row] = chosenNumber;
-					}
-				}
-				if(playerWinningMoveFoundInDiagonal1)
-				{
-					if(board[0][0] == 0)
-					{
-						StdDraw.text(.15, .375, number);
-						board[0][0] = chosenNumber;
-					}
-					if(board[1][1] == 0)
-					{
-						StdDraw.text(.48, .625, number);
-						board[1][1] = chosenNumber;
-					}
-					if(board[2][2] == 0)
-					{
-						StdDraw.text(.81, .875, number);
-						board[2][2] = chosenNumber;
-					}
-				}
-				if(playerWinningMoveFoundInDiagonal2)
-				{
-					if(board[0][2] == 0)
-					{
-						StdDraw.text(.15, .875, number);
-						board[0][2] = chosenNumber;
-					}
-					if(board[1][1] == 0)
-					{
-						StdDraw.text(.48, .625, number);
-						board[1][1] = chosenNumber;
-					}
-					if(board[2][0] == 0)
-					{
-						StdDraw.text(.81, .375, number);
-						board[2][0] = chosenNumber;
+						if(board[0][2] == 0)
+						{
+							StdDraw.text(.15, .875, number);
+							board[0][2] = chosenNumber;
+						}
+						if(board[1][1] == 0)
+						{
+							StdDraw.text(.48, .625, number);
+							board[1][1] = chosenNumber;
+						}
+						if(board[2][0] == 0)
+						{
+							StdDraw.text(.81, .375, number);
+							board[2][0] = chosenNumber;
+						}
 					}
 				}
 			}
 		}
-		
-		else if(!winningMoveFound && !playerWinningMoveFound)
+		if(!winningMoveFound && !playerWinningMoveFound)
 		{
 			boolean validSpaceFound = false;
 			int chosenNumber = randomCPUNumSelector();
