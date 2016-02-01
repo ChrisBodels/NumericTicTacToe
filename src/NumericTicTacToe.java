@@ -12,7 +12,7 @@ import edu.princeton.cs.introcs.StdDraw;
  * 
  * @author Chris Bodels
  * 
- * Last updated: 28 January 2016
+ * Last updated: 01 February 2016
  *
  */
 public class NumericTicTacToe {
@@ -108,25 +108,10 @@ public class NumericTicTacToe {
 				if(move % 2 == 0)
 				{
 					cpuMove();
-					for(int i = 0; i < 3; i++)
-				       {
-				    	   if(board[i][0] + board[i][1] + board[i][2] == 15 && board[i][0] != 0 && board[i][1] !=0 && board [i][2] != 0)
-				    	   {
-				    		   cpuWin = true;
-				    	   }
-				    	   if(board[0][i] + board[1][i] + board[2][i] == 15 && board[0][i] != 0 && board[1][i] !=0 && board [2][i] != 0)
-				    	   {
-				    		   cpuWin = true;
-				    	   }
-				       }
-				       if((board[0][0] + board[1][1] + board[2][2]) == 15 && board[0][0] != 0 && board[1][1] !=0 && board [2][2] != 0)
-				       {
-				       		cpuWin = true;
-				       }
-				       if((board[0][2] + board [1][1] + board[2][0]) == 15 && board[2][0] != 0 && board[1][1] !=0 && board [0][2] != 0)
-				       {
-				       		cpuWin = true;
-				       }
+					if(winnerCheck())
+					{
+						cpuWin = true;
+					}
 					
 				}
 				else
@@ -143,6 +128,32 @@ public class NumericTicTacToe {
 		{
 			System.out.println("It's a draw!\n\nMaybe next time you'll win...");
 		}
+	}
+	
+	public boolean winnerCheck()
+	{
+		boolean winnerCheck = false;
+		
+		for(int i = 0; i < 3; i++)
+		{
+			if(board[i][0] + board[i][1] + board[i][2] == 15 && board[i][0] != 0 && board[i][1] !=0 && board [i][2] != 0)
+			{
+				winnerCheck = true;
+			}
+			if(board[0][i] + board[1][i] + board[2][i] == 15 && board[0][i] != 0 && board[1][i] !=0 && board [2][i] != 0)
+			{
+				winnerCheck = true;
+			}
+		}
+		if(board[0][0] + board[1][1] + board[2][2] == 15 && board[0][0] != 0 && board[1][1] !=0 && board [2][2] != 0)
+		{
+			winnerCheck = true;
+		}
+		else if(board[2][0] + board[1][1] + board[0][2] == 15 && board[2][0] != 0 && board[1][1] !=0 && board [0][2] != 0)
+		{
+			winnerCheck = true;
+		}
+		return winnerCheck;
 	}
 	
 	public void cpuMove()
@@ -678,24 +689,9 @@ public class NumericTicTacToe {
        String number = "" + selectedNum +"";
        StdDraw.text(x, y,  number);
        
-       for(int i = 0; i < 3; i++)
+       if(winnerCheck())
        {
-    	   if(board[i][0] + board[i][1] + board[i][2] == 15 && board[i][0] != 0 && board[i][1] !=0 && board [i][2] != 0)
-    	   {
-    		   playerWin = true;
-    	   }
-    	   if(board[0][i] + board[1][i] + board[2][i] == 15 && board[0][i] != 0 && board[1][i] !=0 && board [2][i] != 0)
-    	   {
-    		   playerWin = true;
-    	   }
-       }
-       if((board[0][0] + board[1][1] + board[2][2]) == 15 && board[0][0] != 0 && board[1][1] !=0 && board [2][2] != 0)
-       {
-       		playerWin = true;
-       }
-       if((board[0][2] + board [1][1] + board[2][0]) == 15 && board[2][0] != 0 && board[1][1] !=0 && board [0][2] != 0)
-       {
-       		playerWin = true;
+    	   playerWin = true;
        }
 	}
 	
